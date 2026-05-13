@@ -1,0 +1,79 @@
+# Smithery manifest for InventList MCP
+# Place this file in the public companion repo (inventlist/mcp) root.
+# https://smithery.ai docs: https://smithery.ai/docs
+
+name: inventlist
+displayName: InventList MCP
+description: |
+  Agent-readable execution memory + the indie builder workspace.
+  26 MCP tools across Nodepad (pads, nodes, context recovery),
+  Ships, Roadmaps, Stories, Collections, Sites, and Teams.
+  The wedge is Nodepad's per-pad context.json — agents resume
+  into the role, active node, and recent captures from the last
+  session, then act on the rest of the workspace through the same
+  connection.
+
+homepage: https://inventlist.com
+documentation: https://inventlist.com/how-tos/mcp        # human onboarding guide
+toolReference: https://inventlist.com/tools/cli/skills   # all 26 tools, agent-facing
+manifestUrl: https://inventlist.com/api/v1/tools.json
+endpoint: https://inventlist.com/mcp
+
+categories:
+  - productivity
+  - notes
+  - knowledge-management
+  - developer-tools
+
+keywords:
+  - execution-memory
+  - context-recovery
+  - nodepad
+  - pkm
+  - indie-makers
+  - founders
+  - ships
+  - roadmaps
+
+transport: streamable-http
+
+auth:
+  type: bearer
+  description: |
+    Generate an API key at https://inventlist.com/settings#developer
+    and pass it as `Authorization: Bearer <token>`. Same token as the
+    REST API at /api/v1/* — one credential for both surfaces.
+  setupUrl: https://inventlist.com/settings#developer
+
+install:
+  claude_code: |
+    claude mcp add inventlist --transport http https://inventlist.com/mcp \
+      --header "Authorization: Bearer YOUR_API_KEY"
+
+  claude_desktop_config: |
+    {
+      "mcpServers": {
+        "inventlist": {
+          "transport": "http",
+          "url": "https://inventlist.com/mcp",
+          "headers": { "Authorization": "Bearer YOUR_API_KEY" }
+        }
+      }
+    }
+
+  cursor: |
+    Settings → MCP → Add server
+      Name: inventlist
+      URL:  https://inventlist.com/mcp
+      Header: Authorization = Bearer YOUR_API_KEY
+
+example_prompts:
+  - "Resume my InventList nodepad 'side-project' — what was I working on?"
+  - "Capture this thought into my 'work-notes' pad as a sticky: ..."
+  - "Toggle task 3 done on my roadmap for inventlist.com"
+  - "Draft a ship for my product 'localvault' about the v1.2 release"
+
+maintainer:
+  name: Nauman Tariq
+  email: nauman@intellecta.co
+  github: nauman
