@@ -1,6 +1,10 @@
 # Smithery manifest for InventList MCP
 # Place this file in the public companion repo (inventlist/mcp) root.
 # https://smithery.ai docs: https://smithery.ai/docs
+#
+# Editing this file? It's mirrored to ~/Code/00-source/mcp/smithery.yaml
+# (the github.com/inventlist/mcp repo). Update both. Full cross-reference
+# list: docs/agents/mcp-contract.md
 
 name: inventlist
 displayName: InventList MCP
